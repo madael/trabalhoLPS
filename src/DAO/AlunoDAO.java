@@ -25,7 +25,7 @@ public class AlunoDAO {
                 + "aluno_rg=?, "
                 + "aluno_email=?, "
                 + "aluno_nickname=?, " 
-                + "curso_ID=? WHERE aluno_matricula=?";
+                + "curso_id=? WHERE aluno_matricula=?";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
             stmt.setString(1, aluno.getSenha());
@@ -56,7 +56,7 @@ public class AlunoDAO {
     }
     
     public static void adiciona(Aluno aluno) {
-        String sql = "INSERT INTO tblaluno(aluno_matricula,aluno_senha,aluno_nome,aluno_cpf,aluno_rg,aluno_email,aluno_nickname,curso_ID)"
+        String sql = "INSERT INTO tblaluno(aluno_matricula,aluno_senha,aluno_nome,aluno_cpf,aluno_rg,aluno_email,aluno_nickname,curso_id)"
                     +" VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
