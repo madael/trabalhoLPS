@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class AlunoDAO {
     
-    public static void update(Aluno usuario) {
+    public static void update(Aluno aluno) {
         String sql = "UPDATE tblaluno SET "
                 + "aluno_senha = ?, "
                 + "aluno_nome=?, "
@@ -28,62 +28,62 @@ public class AlunoDAO {
                 + "curso_ID=? WHERE aluno_matricula=?";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
-            stmt.setString(1, usuario.getSenha());
-            stmt.setString(2, usuario.getNome());
-            stmt.setString(3, usuario.getCpf());
-            stmt.setString(4, usuario.getRg());
-            stmt.setString(5, usuario.getEmail());
-            stmt.setString(6, usuario.getNickname());
-            stmt.setInt(7, usuario.getIdCurso());
-            stmt.setString(8, usuario.getMatricula());
+            stmt.setString(1, aluno.getSenha());
+            stmt.setString(2, aluno.getNome());
+            stmt.setString(3, aluno.getCpf());
+            stmt.setString(4, aluno.getRg());
+            stmt.setString(5, aluno.getEmail());
+            stmt.setString(6, aluno.getNickname());
+            stmt.setInt(7, aluno.getIdCurso());
+            stmt.setString(8, aluno.getMatricula());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql update usuario: " + e);
+            System.out.println("Não foi possivel executar o sql update aluno: " + e);
         }
     }
     
-    public static void remover(Aluno usuario) {
+    public static void remover(Aluno aluno) {
         String sql = "DELETE FROM tblaluno WHERE aluno_matricula = ?";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
-            stmt.setString(1, usuario.getMatricula());
+            stmt.setString(1, aluno.getMatricula());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql remover usuario: " + e);
+            System.out.println("Não foi possivel executar o sql remover aluno: " + e);
         }
     }
     
-    public static void adiciona(Aluno usuario) {
+    public static void adiciona(Aluno aluno) {
         String sql = "INSERT INTO tblaluno(aluno_matricula,aluno_senha,aluno_nome,aluno_cpf,aluno_rg,aluno_email,aluno_nickname,curso_ID)"
                     +" VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
-            stmt.setString(1, usuario.getMatricula());
-            stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getNome());
-            stmt.setString(4, usuario.getCpf());
-            stmt.setString(5, usuario.getRg());
-            stmt.setString(6, usuario.getEmail());
-            stmt.setString(7, usuario.getNickname());
-            stmt.setInt(8, usuario.getIdCurso());            
+            stmt.setString(1, aluno.getMatricula());
+            stmt.setString(2, aluno.getSenha());
+            stmt.setString(3, aluno.getNome());
+            stmt.setString(4, aluno.getCpf());
+            stmt.setString(5, aluno.getRg());
+            stmt.setString(6, aluno.getEmail());
+            stmt.setString(7, aluno.getNickname());
+            stmt.setInt(8, aluno.getIdCurso());            
             stmt.execute();
             stmt.close();
 
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql adicionar usuario: " + e);
+            System.out.println("Não foi possivel executar o sql adicionar aluno: " + e);
         }
     }   
     
     public static Aluno buscar(int texto){
-        Aluno usuario = new Aluno();
-        String sql = "Select * from aluno where codigo_aluno="+texto;
+        Aluno aluno = new Aluno();
+        String sql = "Select * from tblaluno where aluno_matricula="+texto;
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
             ResultSet resultset = stmt.executeQuery();
             resultset.next();
-            usuario = new Aluno(resultset.getString(1), 
+            aluno = new Aluno(resultset.getString(1), 
                     resultset.getString(2),
                     resultset.getString(3),
                     resultset.getString(4),
@@ -96,18 +96,18 @@ public class AlunoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql aluno" + e);
+            System.out.println("Não foi possivel executar o sql buscar aluno: " + e);
         }
-        return usuario;
+        return aluno;
     }
     
     public static Aluno buscar(String texto){
-        Aluno usuario = new Aluno();
+        Aluno aluno = new Aluno();
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(texto);
             ResultSet resultset = stmt.executeQuery();
             resultset.next();
-            usuario = new Aluno(resultset.getString(1), 
+            aluno = new Aluno(resultset.getString(1), 
                     resultset.getString(2),
                     resultset.getString(3),
                     resultset.getString(4),
@@ -119,20 +119,20 @@ public class AlunoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql aluno" + e);
+            System.out.println("Não foi possivel executar o sql buscar aluno" + e);
         }
-        return usuario;
+        return aluno;
     }
     
     public static ArrayList<Aluno> consulta() {
         ArrayList<Aluno> list = new ArrayList<>();
 
-        String sql = "Select * from aluno";
+        String sql = "Select * from tblaluno";
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
             ResultSet resultset = stmt.executeQuery();
             while (resultset.next()) {
-                Aluno usuario = new Aluno(resultset.getString(1), 
+                Aluno aluno = new Aluno(resultset.getString(1), 
                     resultset.getString(2),
                     resultset.getString(3),
                     resultset.getString(4),
@@ -140,11 +140,11 @@ public class AlunoDAO {
                     resultset.getString(6),
                     resultset.getString(7), 
                     resultset.getInt(8));
-                list.add(usuario);
+                list.add(aluno);
              }                           
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("Não foi possivel executar o sql aluno");
+            System.out.println("Não foi possivel executar o sql consultar aluno: "+e);
         }
 
         return list;
