@@ -11,6 +11,12 @@ public class Administrador {
         senha="";
     }
     
+    public void imprimir(){
+            System.out.println("ID adm: "+idAdm
+                            +" Nome adm: "+nome
+                            +" Senha: "+senha);
+    }
+    
     public Administrador(int idAdm, String nome, String senha){
         this.idAdm=idAdm;
         this.nome=nome;

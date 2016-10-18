@@ -21,6 +21,17 @@ public class Aluno {
         idCurso=0;
     }
     
+    public void imprimir(){
+            System.out.println("Matricula: "+matricula
+                            +" Nome aluno: "+nome
+                            +" Senha: "+senha
+                            +" CPF: "+cpf
+                            +" RG: "+rg
+                            +" Email: "+email
+                            +" Nickname: "+nickname
+                            +" Id do curdo: "+idCurso);
+    }
+    
     public Aluno(String matricula, String nome, String senha, String cpf, String rg, String email, String nickname, int idCurso){
         this.matricula=matricula;
         this.nome=nome;

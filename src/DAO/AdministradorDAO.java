@@ -60,7 +60,7 @@ public class AdministradorDAO {
     
     public static Administrador buscar(int texto){
         Administrador adm = new Administrador();
-        String sql = "Select * from tbladministrador where aluno_matricula="+texto;
+        String sql = "Select * from tbladministrador where idAdm="+texto;
         try {
             PreparedStatement stmt = ConexaoBD.conexao().prepareStatement(sql);
             ResultSet resultset = stmt.executeQuery();

@@ -15,6 +15,14 @@ public class Palestrante {
         minicurso="";
     }
     
+    public void imprimir(){
+            System.out.println("ID Palestrante: "+id
+                            +" Nome palestrante: "+nome
+                            +" Universidade: "+universidade
+                            +" Area de atuação: "+area
+                            +" Minicurso: "+minicurso);
+    }
+    
     public Palestrante(int id, String nome, String universidade, String area, String minicurso){
         this.id=id;
         this.nome=nome;

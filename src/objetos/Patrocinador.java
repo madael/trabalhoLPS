@@ -8,6 +8,10 @@ public class Patrocinador {
         id="";
         nome="";
     }
+    public void imprimir(){
+            System.out.println("ID Patrocinador: "+id
+                            +" Nome Patrocinador: "+nome);
+    }
     
     public Patrocinador(String id, String nome){
         this.id=id;
